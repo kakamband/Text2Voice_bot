@@ -18,7 +18,7 @@ def get_text_messages(message):
         keyboard.add(key_en)
         bot.send_message(
 		message.from_user.id,
-		"Бот здатен претворювати текст на аудіо. Вибери мову, після чого введи повідомлення для отримання результату",
+		"Бот здатен перетворювати текст на аудіо. Вибери мову, після чого введи повідомлення для отримання результату",
 		reply_markup = keyboard)
         print(language)
 
