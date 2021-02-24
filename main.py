@@ -4,7 +4,7 @@ from gtts import gTTS
 
 TOCKEN  = '*'
 
-language = 'ru'
+language = 'uk'
 bot = telebot.TeleBot(TOCKEN)
 
 @bot.message_handler(content_types = ['text'])
@@ -12,11 +12,14 @@ def get_text_messages(message):
     global language
     if message.text == "/start":
         keyboard = telebot.types.InlineKeyboardMarkup()
-        key_ru = telebot.types.InlineKeyboardButton(text = "Русский", callback_data = 'ru')
+        key_ru = telebot.types.InlineKeyboardButton(text = "Українська", callback_data = 'uk')
         keyboard.add(key_ru)
         key_en = telebot.types.InlineKeyboardButton(text = "English", callback_data = 'en')
         keyboard.add(key_en)
-        bot.send_message(message.from_user.id, "Ты написал СТАРТ", reply_markup = keyboard)
+        bot.send_message(
+		message.from_user.id,
+		"Бот здатен претворювати текст на аудіо. Вибери мову, після чого введи повідомлення для отримання результату",
+		reply_markup = keyboard)
         print(language)
 
     else:
@@ -31,11 +34,10 @@ def callback_worker(call):
     global language
     if call.data == "en":
         language = call.data
-        bot.send_message(call.message.chat.id, "Язык обработки успешно изменён на английский")
-    elif call.data == "ru":
-        call.data == "ru"
+        bot.send_message(call.message.chat.id, "Мова обробки успішно змінена на англійську")
+    elif call.data == "uk":
         language = call.data
-        bot.send_message(call.message.chat.id, "Язык обработки успешно изменён на русский")
+        bot.send_message(call.message.chat.id, "Мова обробки успішно змінена на українську")
         
 
 bot.polling(none_stop=True, interval=0)
