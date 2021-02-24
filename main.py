@@ -20,7 +20,6 @@ def get_text_messages(message):
 		message.from_user.id,
 		"Бот здатен перетворювати текст на аудіо. Вибери мову, після чого введи повідомлення для отримання результату",
 		reply_markup = keyboard)
-        print(language)
 
     else:
         tmp = gTTS(text = message.text, lang = language)
